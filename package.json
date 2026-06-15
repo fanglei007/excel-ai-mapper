@@ -1,0 +1,46 @@
+{
+  "name": "excel-ai-mapper",
+  "version": "1.0.0",
+  "description": "Excel AI 字段匹配工具",
+  "private": true,
+  "type": "module",
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "concurrently -k \"vite --host 127.0.0.1\" \"wait-on http://127.0.0.1:5173 && electron .\"",
+    "build": "vite build",
+    "preview": "vite preview",
+    "package": "npm run build && electron-builder",
+    "package:mac:arm64": "npm run build && electron-builder --mac dmg --arm64",
+    "package:mac:x64": "npm run build && electron-builder --mac dmg --x64",
+    "package:win": "npm run build && electron-builder --win nsis --x64"
+  },
+  "dependencies": {
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "electron": "^41.7.1",
+    "electron-builder": "^26.15.3",
+    "vite": "^8.0.16",
+    "wait-on": "^9.0.10"
+  },
+  "build": {
+    "appId": "com.fanglei.excelaimapper",
+    "productName": "Excel AI Mapper",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "utils/request.mjs",
+      "package.json"
+    ],
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    }
+  }
+}
