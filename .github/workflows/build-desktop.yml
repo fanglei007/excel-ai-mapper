@@ -21,6 +21,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Build renderer
+        run: npm run build
+
       - name: Build Windows installer
         run: npx electron-builder --win nsis --x64 --publish never
 
@@ -51,6 +54,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Build renderer
+        run: npm run build
+
       - name: Build macOS Intel installer
         run: npx electron-builder --mac dmg --x64 --publish never
 
@@ -78,6 +84,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Build renderer
+        run: npm run build
 
       - name: Build macOS Apple Silicon installer
         run: npx electron-builder --mac dmg --arm64 --publish never
