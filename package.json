@@ -6,13 +6,15 @@
   "type": "module",
   "main": "electron/main.js",
   "scripts": {
-    "start": "concurrently -k \"vite --host 127.0.0.1\" \"wait-on http://127.0.0.1:5173 && electron .\"",
+    "start": "concurrently -k \"vite --host 127.0.0.1\" \"wait-on http://127.0.0.1:5173 && electron --inspect=9229 .\"",
     "build": "vite build",
     "preview": "vite preview",
     "package": "npm run build && electron-builder",
     "package:mac:arm64": "npm run build && electron-builder --mac dmg --arm64",
     "package:mac:x64": "npm run build && electron-builder --mac dmg --x64",
-    "package:win": "npm run build && electron-builder --win nsis --x64"
+    "package:win": "npm run build && electron-builder --win nsis --x64",
+    "dev": "vite --host 127.0.0.1",
+    "debug:main": "wait-on http://127.0.0.1:5173 && electron --inspect=9229 ."
   },
   "dependencies": {
     "xlsx": "^0.18.5"
